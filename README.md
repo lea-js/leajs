@@ -11,7 +11,7 @@ extendable, configuration based http server.
 
 ### Install
 ```sh
-npm install --save leajs
+npm install --save leajs-server
 ```
 
 ### Usage
@@ -30,7 +30,7 @@ in "server/" and "/"
 
 ```js
 // in node
-Leajs = require("leajs")
+Leajs = require("leajs-server")
 
 // available options
 // name (String) Default:"leajs.config" Name of the configuration file

@@ -1,5 +1,5 @@
 {
-  "name": "leajs",
+  "name": "leajs-server",
   "description": "extendable, configuration based http server",
   "version": "0.1.0",
   "homepage": "https://github.com/lea-js/",
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/lea-js/leajs"
+    "url": "git://github.com/lea-js/leajs-server"
   },
   "engines": {
     "node": "*"
