@@ -3,11 +3,8 @@
 extendable, configuration based http server.
 
 ## Features
-- Snapshots only - forces you to do proper tests of input -> output
-- Interactively shows you the output and asks about it
-- Uses webpack bundles to track changes
-- Watches test files and dependencies
-- Static analysis of tests to make writing them as easy as possible
+- easily extendable by using [hook-up](https://github.com/paulpflug/hook-up)
+- configuration based by using [read-conf](https://github.com/paulpflug/read-conf)
 
 ### Install
 ```sh
@@ -119,7 +116,7 @@ Activated by default:
 
 Installed and activated manually
 - [leajs-spa-router](https://github.com/lea-js/leajs-spa-router) - single page router
-- [leajs-webpack](https://github.com/lea-js/leajs-webpack) - webpack development and hot middleware
+- [leajs-webpack](https://github.com/lea-js/leajs-webpack) - webpack development and hot reload middleware
 
 ## License
 Copyright (c) 2018 Paul Pflugradt
