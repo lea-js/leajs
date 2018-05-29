@@ -113,7 +113,7 @@ Activated by default:
 - **[leajs-folders](https://github.com/lea-js/leajs-folders)** - serve folders
 - **[leajs-encoding](https://github.com/lea-js/leajs-encoding)** - handles the encoding
 - **[leajs-cache](https://github.com/lea-js/leajs-cache)** - handles caching of resources
-- [leajs-locale](https://github.com/lea-js/leajs-locale) - simplifies local
+- [leajs-locale](https://github.com/lea-js/leajs-locale) - simplifies handling locale header
 - [leajs-eventsource](https://github.com/lea-js/leajs-eventsource) - eventsource implementation
 - [leajs-redirect](https://github.com/lea-js/leajs-redirect) - manages redirects
 
