@@ -22,8 +22,8 @@ class Lea
   path: path
   startUp: -> @whenLoaded = new Promise (resolve, reject) =>
     try
-      {config, respond, position, init} = this
-      
+      {config, respond, position, init, resetAllActions} = this
+      resetAllActions()
       {hyphenate, getAccepted, getQuery, isArray} = util
 
       respond.hookIn position.init, (o) =>
@@ -121,7 +121,6 @@ class Lea
           res.writeHead statusCode, head
           res.end(body)
           
-
       await Promise.all config.plugins.map ({plugin}) => plugin(this)
       await init()
       if (arr = config.respond)?
@@ -141,7 +140,7 @@ class Lea
 
       if this.readConfig.watch
         server.on "connection", Array.prototype.push.bind(this._sockets = [])
-      if config.listen != false
+      if config.listen != false and not this.isCancelled
         server.listen config.listen, => 
           if config.verbose
             unless typeof (port=config.listen.port) == "number"
@@ -176,18 +175,16 @@ module.exports = (options) =>
     required: false
     catch: (e) => console.log e
     base: new Lea
-    cancel: ({resetAllActions, close}) =>
-      await close().catch (e) => console.log e
-      resetAllActions()
-    cb: (lea) => lea.startUp()
+    cancel: (lea) => 
+      lea.isCancelled = true
+      return lea.whenLoaded
+    cb: (lea) =>
+      unless options.startUp == false
+        lea.isCancelled = false
+        await lea.startUp() 
+        return => lea.close()
 
-module.exports.getConfig = => readConf 
-  name: "leajs.config"
-  folders: ["./server","./"]
-  schema: path.resolve(__dirname, "./configSchema")
-  plugins:
-    paths: [process.cwd(), path.resolve(__dirname,"..")]
-  base: new Lea
+module.exports.getConfig = => module.exports(startUp: false)
 
 
 if process.argv[0] == "coffee"
