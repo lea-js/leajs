@@ -14,7 +14,7 @@ request = (path = "/") =>
   filter: "headers,statusCode,-headers.date,body"
 
 prepare (state, cleanUp) =>
-  Lea config: Object.assign (state or {}), {listen:port:port()}
+  Lea config: Object.assign (state or {}), {listen:{port:port(),host:"localhost"}}
   .then (lea) =>
     cleanUp => lea.close()
     return lea

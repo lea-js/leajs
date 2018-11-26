@@ -176,13 +176,14 @@ module.exports = (options) =>
     catch: (e) => console.log e
     base: new Lea
     cancel: (lea) => 
-      lea.isCancelled = true
-      return lea.whenLoaded
+      unless lea.isCancelled
+        lea.isCancelled = true
+        await lea.close()
+        lea.resetAllActions()
+        lea.isCancelled = false
     cb: (lea) =>
       unless options.startUp == false
-        lea.isCancelled = false
         await lea.startUp() 
-        return => lea.close()
 
 module.exports.getConfig = => module.exports(startUp: false)
 
